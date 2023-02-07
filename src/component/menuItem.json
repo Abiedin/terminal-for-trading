@@ -1,0 +1,27 @@
+export menuItem = [
+  {
+    path: '/tora/beresheet',
+    name: 'BERESHEET',
+    icon: '/images/sidebar/bereshit.png',
+  },
+  {
+    path: '/tora/schmot',
+    name: 'SHMOT',
+    icon: '/images/sidebar/shmot.png',
+  },
+  {
+    path: '/tora/vaikra',
+    name: 'VAIKRA',
+    icon: '/images/sidebar/vaikra.png',
+  },
+  {
+    path: '/tora/bemitbar',
+    name: 'BEMITBAR',
+    icon: '/images/sidebar/bemitbar.png',
+  },
+  {
+    path: '/tora/dvarim',
+    name: 'DVARIM',
+    icon: '/images/sidebar/dvarim.png',
+  },
+];

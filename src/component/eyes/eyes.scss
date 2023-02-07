@@ -1,0 +1,45 @@
+.eyes {
+  position: absolute;
+
+}
+
+.eye-left  {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  position: relative;
+  float: left;
+  box-shadow: 2px 2px 4px 2px rgba(2, 3, 255, .2);
+}
+
+.eye-pupil-l {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #ec7171;
+  left: 50px;
+  top: 25px;
+  position: absolute;
+}
+
+
+
+
+.eye-right  {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  position: relative;
+  float: left;
+  box-shadow: 2px 2px 2px 2px rgba(2, 3, 255, .2);
+}
+
+.eye-pupil-r {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #ec7171;
+  left: 50px;
+  top: 25px;
+  position: absolute;
+}
