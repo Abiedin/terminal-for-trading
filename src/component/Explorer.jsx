@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Header from "./header/Header";
 import "./explorer.scss";
 import Beam from "./ruler-beam/Beam";
+import Mouse from "./mouse/Mouse";
+import CountPrice from "./ruler-count/CountPrice";
+import GetApi from "./buttons/get-api/GetApi";
 
 const Explorer = () => {
   const [ruler, setRuler] = useState(false);
@@ -20,7 +23,7 @@ const Explorer = () => {
       return false;
     };
 
-    block.onmousedown = (event) => {
+    block.addEventListener("mousedown", (event) => {
       if (event.button === 1) {
         setRuler(true);
         setLayerXX(event.layerX);
@@ -30,7 +33,7 @@ const Explorer = () => {
         setLayerXX(event.layerX);
         setLayerYY(event.layerY);
       }
-    };
+    });
 
     block.onmouseup = (event) => {
       if (ruler) {
@@ -38,14 +41,10 @@ const Explorer = () => {
         gorizont.style.display = "block";
         vertical.style.left = event.clientX + "px";
         gorizont.style.top = event.clientY + "px";
-
-        event.target.style.cursor = "crosshair";
-
         setMeasure(true);
       } else {
         vertical.style.display = "none";
         gorizont.style.display = "none";
-
         setMeasure(false);
       }
     };
@@ -54,7 +53,6 @@ const Explorer = () => {
       if (ruler) {
         vertical.style.left = event.clientX + "px";
         gorizont.style.top = event.clientY + "px";
-        event.target.style.cursor = "crosshair";
       }
     };
   }, [ruler]);
@@ -72,6 +70,7 @@ const Explorer = () => {
   return (
     <div className="explorer">
       <Header />
+      <GetApi />
       <div className="window" id="window__id">
         <Beam
           ruler={ruler}
@@ -89,6 +88,13 @@ const Explorer = () => {
           className="follow-cursor-gorizont"
           style={{ width: widthWindow }}
         ></div>
+        <Mouse />
+        <CountPrice
+          heighthWindow={heighthWindow}
+          widthWindow={widthWindow}
+          layerXX={layerXX}
+          layerYY={layerYY}
+        />
       </div>
     </div>
   );

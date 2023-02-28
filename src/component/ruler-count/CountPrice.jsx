@@ -1,33 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "./count-ruler.scss";
 
-const CountPrice = ({ shiningBeam }) => {
-  const [coord, seCoord] = useState(0);
+const CountPrice = ({ shiningBeam, xx, yy, widthWindow, layerXX }) => {
+  const [coord, setCoord] = useState(0);
 
   useEffect(() => {
     const count = document.querySelector(".count-price");
 
-    console.log("---------------");
-
     if (shiningBeam) {
       count.style.display = "block";
+      count.style.left = xx + "px";
+      count.style.top = yy + "px";
 
-      document.addEventListener("mousedown", (event) => {
-        count.style.left = event.clientX + "px";
-        count.style.top = event.clientY + "px";
-        
-      });
       document.addEventListener("mousemove", (event) => {
-        count.style.left = event.clientX + "px";
-        count.style.top = event.clientY + "px";
+        if (
+          event.target.closest("#window__id") &&
+          event.target.className !== "count-price"
+        ) {
+          count.style.left = event.clientX + "px";
+          count.style.top = event.clientY + "px";
 
-        seCoord(event.clientX);
+          setCoord(event.clientX);
+        }
       });
     } else {
-     
       count.style.display = "none";
     }
-  }, [shiningBeam]);
+  }, [shiningBeam, xx, yy]);
 
   return <div className="count-price">{coord}</div>;
 };
