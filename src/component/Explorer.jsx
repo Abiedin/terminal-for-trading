@@ -4,7 +4,6 @@ import "./explorer.scss";
 import Beam from "./ruler-beam/Beam";
 import Mouse from "./mouse/Mouse";
 import CountPrice from "./ruler-count/CountPrice";
-import GetApi from "./buttons/get-api/GetApi";
 
 const Explorer = () => {
   const [ruler, setRuler] = useState(false);
@@ -70,7 +69,6 @@ const Explorer = () => {
   return (
     <div className="explorer">
       <Header />
-      <GetApi />
       <div className="window" id="window__id">
         <Beam
           ruler={ruler}

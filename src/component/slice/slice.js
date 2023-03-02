@@ -1,21 +1,22 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'; 
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const apid_Call = createAsyncThunk(
-  'exchange/apid_Call',
-  async (_, { rejectWithValue, dispatch }) => {
+  "exchange/apid_Call",
+  async (time, { rejectWithValue, dispatch }) => {
     try {
-      const KIY = '1QYXFTSSWV3XIPZP';
+      const KIY = "1QYXFTSSWV3XIPZP";
       const response = await axios.get(
-        `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=1min&apikey=${KIY}`
+        `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=${time}min&apikey=${KIY}`
       );
 
       if (!response) {
-        throw new Error('Can/t delete post. Server error.');
+        throw new Error("Can/t delete post. Server error.");
       }
 
-      console.log("asd", response.data);
-      dispatch(stateCurrency(response.data))
+      console.log(response.data);
+      dispatch(stateCurrency(response.data));
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -23,25 +24,45 @@ export const apid_Call = createAsyncThunk(
   }
 );
 
-const setError = (state, action) => {
-  console.log('rejected');
-  state.status = 'rejected';
-  state.error = action.payload;
-};
+export const dropDown = createAsyncThunk(
+  "exchange/dropDown",
+  async (shortName, { rejectWithValue, dispatch }) => {
+    try {
+      const KIY = "1QYXFTSSWV3XIPZP";
+      const response = await axios.get(
+        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${shortName}&apikey=${KIY}`
+      );
+
+      if (!response) {
+        throw new Error("Server error.");
+      }
+
+      dispatch(stateFieldInput(response.data));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const CurrencySlice = createSlice({
-  name: 'exchange',
+  name: "exchange",
   initialState: {
     exchangeArr: [],
+    input: "",
+    dropList: [],
   },
   reducers: {
     stateCurrency: (state, action) => {
       state.exchangeArr = action.payload;
-      console.log(state.exchangeArr)
+    },
+    stateFieldInput: (state, action) => {
+      state.dropList = action.payload;
+      console.log("111", action.payload);
     },
   },
 });
 
-export const { stateCurrency } = CurrencySlice.actions;
+export const { stateCurrency, stateFieldInput } = CurrencySlice.actions;
 
 export default CurrencySlice.reducer;
