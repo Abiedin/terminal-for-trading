@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import CurrencySlice from "../slice/slice";
+import DataSlice from "../slice/DataIntraday";
 
 export const store = configureStore({
   reducer: {
-    cur: CurrencySlice,
+    currency: CurrencySlice,
+    todayPrice: DataSlice,
   },
 });

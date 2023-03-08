@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { apid_Call } from "../../slice/slice";
+import { api_CallTime } from "../../slice/slice";
 import { chartDays } from "../../Config/date";
 import SelectButton from "../buttons-period/SelectButton";
 
-const GetApi = () => {
+const GetApiTime = () => {
   const [time, setTme] = useState(60);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(apid_Call(time));
+    dispatch(api_CallTime(time));
   }, [time]);
 
   return (
@@ -37,4 +37,4 @@ const GetApi = () => {
   );
 };
 
-export default GetApi;
+export default GetApiTime;

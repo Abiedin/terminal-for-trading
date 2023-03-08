@@ -5,10 +5,6 @@ import "./beam.scss";
 const Beam = ({
   ruler,
   measure,
-  heighthWindow,
-  widthWindow,
-  layerXX,
-  layerYY,
 }) => {
   const [shiningBeam, setShiningBeam] = useState(false);
   const [xx, setXX] = useState();
@@ -51,8 +47,6 @@ const Beam = ({
     document.onmousemove = (event) => {
       let x = -xx + event.pageX;
       let y = -yy + event.pageY;
-      let negativeX = 0;
-      let negativeY = 0;
 
       function arcctg(x, y) {
         if ((x > 0 && y > 0) || (x < 0 && y > 0))
@@ -71,34 +65,6 @@ const Beam = ({
         beam.style.transform = "rotate(" + 57.2958 * arcctg(x, y) + "deg)";
       }
 
-      /*if (x < 0 && y < 0) {
-        negativeX = Math.abs(x);
-        negativeY = Math.abs(y);
-
-        if (negativeX <= layerXX && negativeY <= layerYY) {
-          beam.style.width = lengthBeam(x, y) + "px";
-          beam.style.transform = "rotate(" + 57.2958 * arcctg(x, y) + "deg)";
-        }
-      } else if (x > 0 && y > 0) {
-        if (layerXX + x <= widthWindow && layerYY + y <= heighthWindow) {
-          beam.style.width = lengthBeam(x, y) + "px";
-          beam.style.transform = "rotate(" + 57.2958 * arcctg(x, y) + "deg)";
-        }
-      } else if (x < 0 && y > 0) {
-        negativeX = Math.abs(x);
-
-        if (negativeX <= layerXX && layerYY + y <= heighthWindow) {
-          beam.style.width = lengthBeam(x, y) + "px";
-          beam.style.transform = "rotate(" + 57.2958 * arcctg(x, y) + "deg)";
-        }
-      } else if (x > 0 && y < 0) {
-        negativeY = Math.abs(y);
-
-        if (layerXX + x <= widthWindow && negativeY <= layerYY) {
-          beam.style.width = lengthBeam(x, y) + "px";
-          beam.style.transform = "rotate(" + 57.2958 * arcctg(x, y) + "deg)";
-        }
-      }*/
     };
   }, [measure]);
 

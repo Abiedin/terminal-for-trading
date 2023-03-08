@@ -4,6 +4,7 @@ import "./explorer.scss";
 import Beam from "./ruler-beam/Beam";
 import Mouse from "./mouse/Mouse";
 import CountPrice from "./ruler-count/CountPrice";
+import Chart from "./chart/Chart";
 
 const Explorer = () => {
   const [ruler, setRuler] = useState(false);
@@ -69,7 +70,8 @@ const Explorer = () => {
   return (
     <div className="explorer">
       <Header />
-      <div className="window" id="window__id">
+      <div className="window" id="window__id">4
+      <Chart />
         <Beam
           ruler={ruler}
           measure={measure}

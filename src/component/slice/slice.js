@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const apid_Call = createAsyncThunk(
-  "exchange/apid_Call",
+export const api_CallTime = createAsyncThunk(
+  "exchange/api_CallTime",
   async (time, { rejectWithValue, dispatch }) => {
     try {
       const KIY = "1QYXFTSSWV3XIPZP";
@@ -14,7 +14,6 @@ export const apid_Call = createAsyncThunk(
         throw new Error("Can/t delete post. Server error.");
       }
 
-      console.log(response.data);
       dispatch(stateCurrency(response.data));
 
       return response.data;
@@ -24,8 +23,8 @@ export const apid_Call = createAsyncThunk(
   }
 );
 
-export const dropDown = createAsyncThunk(
-  "exchange/dropDown",
+export const dropDownAPI = createAsyncThunk(
+  "companyArr/dropDownAPI",
   async (shortName, { rejectWithValue, dispatch }) => {
     try {
       const KIY = "1QYXFTSSWV3XIPZP";
@@ -49,16 +48,15 @@ const CurrencySlice = createSlice({
   name: "exchange",
   initialState: {
     exchangeArr: [],
-    input: "",
     dropList: [],
   },
   reducers: {
     stateCurrency: (state, action) => {
       state.exchangeArr = action.payload;
+      console.log("exchangeArr", state.exchangeArr)
     },
     stateFieldInput: (state, action) => {
       state.dropList = action.payload;
-      console.log("111", action.payload);
     },
   },
 });
